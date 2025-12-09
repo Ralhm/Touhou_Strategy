@@ -1,0 +1,75 @@
+[gd_scene load_steps=11 format=3 uid="uid://ma16yb6nsscg"]
+
+[ext_resource type="Script" uid="uid://dpvamxejukj7a" path="res://Scripts/Character.cs" id="1_iw6yv"]
+[ext_resource type="Script" uid="uid://bgh6uijf260b6" path="res://Scripts/Resources/CharacterData.cs" id="2_7ytq8"]
+[ext_resource type="Texture2D" uid="uid://464om4468qyu" path="res://Assets/Sprites/IsometricTRPGAssetPack_OutlinedEntities.png" id="3_cb4go"]
+[ext_resource type="PackedScene" uid="uid://bvgve6ta8cdrm" path="res://Scenes/UI/HealthBar.tscn" id="4_qtr77"]
+
+[sub_resource type="Resource" id="Resource_h7hij"]
+script = ExtResource("2_7ytq8")
+MaxHealth = 12
+IsAlly = false
+Name = ""
+AttackRange = 1
+MoveRange = 5
+AttackPower = 6
+metadata/_custom_type_script = "uid://bgh6uijf260b6"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_iw6yv"]
+atlas = ExtResource("3_cb4go")
+region = Rect2(32, 340, 16, 17)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7ytq8"]
+atlas = ExtResource("3_cb4go")
+region = Rect2(48, 340, 16, 17)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cb4go"]
+atlas = ExtResource("3_cb4go")
+region = Rect2(0, 340, 16, 17)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qtr77"]
+atlas = ExtResource("3_cb4go")
+region = Rect2(16, 340, 16, 17)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_vdqda"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_iw6yv")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7ytq8")
+}],
+"loop": false,
+"name": &"AttackFront",
+"speed": 3.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cb4go")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qtr77")
+}],
+"loop": true,
+"name": &"IdleFront",
+"speed": 5.0
+}]
+
+[node name="EnemyDevil" type="Node2D" node_paths=PackedStringArray("MoveTilesInRange", "AttackTilesInRange")]
+z_index = 5
+y_sort_enabled = true
+script = ExtResource("1_iw6yv")
+Data = SubResource("Resource_h7hij")
+Speed = 40.0
+MoveTilesInRange = []
+AttackTilesInRange = []
+
+[node name="Sprite" type="AnimatedSprite2D" parent="."]
+position = Vector2(0, -7.75)
+scale = Vector2(1.375, 1.32353)
+sprite_frames = SubResource("SpriteFrames_vdqda")
+animation = &"IdleFront"
+autoplay = "IdleFront"
+
+[node name="HealthBar" parent="." instance=ExtResource("4_qtr77")]

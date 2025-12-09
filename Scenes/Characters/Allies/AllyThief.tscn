@@ -1,0 +1,74 @@
+[gd_scene load_steps=11 format=3 uid="uid://f0ee8tvqjry8"]
+
+[ext_resource type="Script" uid="uid://dpvamxejukj7a" path="res://Scripts/Character.cs" id="1_l1prt"]
+[ext_resource type="Script" uid="uid://bgh6uijf260b6" path="res://Scripts/Resources/CharacterData.cs" id="2_ttuky"]
+[ext_resource type="Texture2D" uid="uid://464om4468qyu" path="res://Assets/Sprites/IsometricTRPGAssetPack_OutlinedEntities.png" id="3_qi340"]
+[ext_resource type="PackedScene" uid="uid://bvgve6ta8cdrm" path="res://Scenes/UI/HealthBar.tscn" id="4_ttuky"]
+
+[sub_resource type="Resource" id="Resource_v7dgu"]
+script = ExtResource("2_ttuky")
+MaxHealth = 7
+IsAlly = true
+Name = ""
+AttackRange = 1
+MoveRange = 5
+AttackPower = 5
+metadata/_custom_type_script = "uid://bgh6uijf260b6"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qi340"]
+atlas = ExtResource("3_qi340")
+region = Rect2(32, 102, 16, 17)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rkpi1"]
+atlas = ExtResource("3_qi340")
+region = Rect2(48, 102, 16, 17)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_l1prt"]
+atlas = ExtResource("3_qi340")
+region = Rect2(0, 102, 16, 17)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ttuky"]
+atlas = ExtResource("3_qi340")
+region = Rect2(16, 102, 16, 17)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_vdqda"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qi340")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rkpi1")
+}],
+"loop": false,
+"name": &"AttackFront",
+"speed": 3.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_l1prt")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ttuky")
+}],
+"loop": true,
+"name": &"IdleFront",
+"speed": 5.0
+}]
+
+[node name="AllyThief" type="Node2D" node_paths=PackedStringArray("MoveTilesInRange", "AttackTilesInRange")]
+z_index = 5
+script = ExtResource("1_l1prt")
+Data = SubResource("Resource_v7dgu")
+Speed = 40.0
+MoveTilesInRange = []
+AttackTilesInRange = []
+
+[node name="Sprite" type="AnimatedSprite2D" parent="."]
+y_sort_enabled = true
+position = Vector2(0, -5)
+sprite_frames = SubResource("SpriteFrames_vdqda")
+animation = &"IdleFront"
+autoplay = "IdleFront"
+
+[node name="HealthBar" parent="." instance=ExtResource("4_ttuky")]

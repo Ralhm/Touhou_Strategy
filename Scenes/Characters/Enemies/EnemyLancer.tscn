@@ -1,0 +1,76 @@
+[gd_scene load_steps=11 format=3 uid="uid://c00q3jrlo27pb"]
+
+[ext_resource type="Script" uid="uid://dpvamxejukj7a" path="res://Scripts/Character.cs" id="1_5ni2s"]
+[ext_resource type="Script" uid="uid://bgh6uijf260b6" path="res://Scripts/Resources/CharacterData.cs" id="2_xpyfx"]
+[ext_resource type="Texture2D" uid="uid://464om4468qyu" path="res://Assets/Sprites/IsometricTRPGAssetPack_OutlinedEntities.png" id="3_drfmr"]
+[ext_resource type="PackedScene" uid="uid://bvgve6ta8cdrm" path="res://Scenes/UI/HealthBar.tscn" id="4_xpyfx"]
+
+[sub_resource type="Resource" id="Resource_h7hij"]
+script = ExtResource("2_xpyfx")
+MaxHealth = 6
+IsAlly = false
+Name = ""
+AttackRange = 2
+MoveRange = 4
+AttackPower = 3
+metadata/_custom_type_script = "uid://bgh6uijf260b6"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jxc34"]
+atlas = ExtResource("3_drfmr")
+region = Rect2(32, 170, 16, 17)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kqyvk"]
+atlas = ExtResource("3_drfmr")
+region = Rect2(48, 170, 16, 17)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_on2r8"]
+atlas = ExtResource("3_drfmr")
+region = Rect2(0, 170, 16, 17)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rjuie"]
+atlas = ExtResource("3_drfmr")
+region = Rect2(16, 170, 16, 17)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_vdqda"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jxc34")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kqyvk")
+}],
+"loop": false,
+"name": &"AttackFront",
+"speed": 3.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_on2r8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rjuie")
+}],
+"loop": true,
+"name": &"IdleFront",
+"speed": 5.0
+}]
+
+[node name="EnemyLancer" type="Node2D" node_paths=PackedStringArray("MoveTilesInRange", "AttackTilesInRange")]
+z_index = 5
+y_sort_enabled = true
+script = ExtResource("1_5ni2s")
+Data = SubResource("Resource_h7hij")
+Speed = 40.0
+MoveTilesInRange = []
+AttackTilesInRange = []
+
+[node name="Sprite" type="AnimatedSprite2D" parent="."]
+position = Vector2(0, -5)
+sprite_frames = SubResource("SpriteFrames_vdqda")
+animation = &"AttackFront"
+autoplay = "IdleFront"
+frame = 1
+frame_progress = 1.0
+
+[node name="HealthBar" parent="." instance=ExtResource("4_xpyfx")]

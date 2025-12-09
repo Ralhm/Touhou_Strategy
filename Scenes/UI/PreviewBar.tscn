@@ -1,0 +1,34 @@
+[gd_scene load_steps=5 format=3 uid="uid://7ygn673r23nw"]
+
+[ext_resource type="PackedScene" uid="uid://bvgve6ta8cdrm" path="res://Scenes/UI/HealthBar.tscn" id="1_dhuyk"]
+[ext_resource type="Script" uid="uid://xlwhlrde2lgo" path="res://Scripts/UI/PreviewBar.cs" id="1_hjj3p"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_dhuyk"]
+bg_color = Color(0, 1, 1, 1)
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_hjj3p"]
+
+[node name="PreviewBar" type="Control" node_paths=PackedStringArray("FinalHealthBar", "PreviewHealthBar")]
+layout_mode = 3
+anchors_preset = 0
+script = ExtResource("1_hjj3p")
+FinalHealthBar = NodePath("FinalHealthBar")
+PreviewHealthBar = NodePath("Previewbar")
+
+[node name="Previewbar" parent="." instance=ExtResource("1_dhuyk")]
+layout_mode = 0
+offset_left = -35.0
+offset_right = 45.0
+offset_bottom = 27.0
+scale = Vector2(0.84, 0.635)
+theme_override_styles/fill = SubResource("StyleBoxFlat_dhuyk")
+value = 100.0
+
+[node name="FinalHealthBar" parent="." instance=ExtResource("1_dhuyk")]
+layout_mode = 0
+offset_left = -35.0
+offset_right = 45.0
+offset_bottom = 27.0
+scale = Vector2(0.84, 0.635)
+theme_override_styles/background = SubResource("StyleBoxEmpty_hjj3p")
+value = 100.0

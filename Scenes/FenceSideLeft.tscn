@@ -1,0 +1,29 @@
+[gd_scene load_steps=5 format=3 uid="uid://bpd5cle5scy8o"]
+
+[ext_resource type="Script" uid="uid://b4e53s1gam32m" path="res://Scenes/Fence.cs" id="1_65fre"]
+[ext_resource type="Texture2D" uid="uid://b32ew77ru7ef3" path="res://Assets/Sprites/Isometric_MedievalFantasy_Tiles.png" id="2_j17s3"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ljkaa"]
+atlas = ExtResource("2_j17s3")
+region = Rect2(160, 153, 16, 17)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_34wpg"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ljkaa")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="FenceSideLeft" type="Node2D"]
+z_index = 1
+y_sort_enabled = true
+script = ExtResource("1_65fre")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(0, -5.5)
+scale = Vector2(0.625, 0.764706)
+sprite_frames = SubResource("SpriteFrames_34wpg")

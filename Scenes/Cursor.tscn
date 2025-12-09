@@ -1,0 +1,26 @@
+[gd_scene load_steps=5 format=3 uid="uid://d4le2qmxmo5op"]
+
+[ext_resource type="Script" uid="uid://re45qafu1yoa" path="res://Scripts/Cursor.cs" id="1_ri6lo"]
+[ext_resource type="Texture2D" uid="uid://gfdgauvntoup" path="res://Assets/Sprites/TRPGIsometricAssetPack_MapIndicators.png" id="2_5vcpq"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5vcpq"]
+atlas = ExtResource("2_5vcpq")
+region = Rect2(16, 16, 16, 8)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_6qa2i"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5vcpq")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="Cursor" type="Node2D"]
+z_index = 2
+script = ExtResource("1_ri6lo")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_6qa2i")

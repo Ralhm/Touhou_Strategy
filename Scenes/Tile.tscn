@@ -1,0 +1,45 @@
+[gd_scene load_steps=6 format=3 uid="uid://b827wj0sj2v3q"]
+
+[ext_resource type="Script" uid="uid://dcq1xhhp56l0s" path="res://Scripts/Tile.cs" id="1_t0yj4"]
+[ext_resource type="Texture2D" uid="uid://gfdgauvntoup" path="res://Assets/Sprites/TRPGIsometricAssetPack_MapIndicators.png" id="2_iof5j"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_r4md0"]
+atlas = ExtResource("2_iof5j")
+region = Rect2(0, 8, 16, 8)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_iof5j"]
+atlas = ExtResource("2_iof5j")
+region = Rect2(16, 0, 16, 8)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_r4md0"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_r4md0")
+}],
+"loop": true,
+"name": &"Red",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_iof5j")
+}],
+"loop": true,
+"name": &"Yellow",
+"speed": 5.0
+}]
+
+[node name="Tile" type="Area2D" node_paths=PackedStringArray("Children")]
+z_index = 1
+collision_layer = 7
+script = ExtResource("1_t0yj4")
+Children = []
+
+[node name="Sprite" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_r4md0")
+animation = &"Yellow"
+autoplay = "Yellow"
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+polygon = PackedVector2Array(-8, 0, -6, 0, -6, 1, -4, 1, -4, 2, -2, 2, -2, 3, 2, 3, 2, 2, 4, 2, 4, 1, 6, 1, 6, 0, 8, 0, 8, -1, 6, -1, 6, -2, 4, -2, 4, -3, 2, -3, 2, -4, -2, -4, -2, -3, -4, -3, -4, -2, -6, -2, -6, -1, -8, -1)

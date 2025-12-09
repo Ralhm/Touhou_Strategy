@@ -1,0 +1,39 @@
+[gd_scene load_steps=6 format=3 uid="uid://cxjaye3whlaga"]
+
+[ext_resource type="Script" uid="uid://bhhin3eo0g51i" path="res://Scripts/UI/CharacterPreview.cs" id="1_6wj5g"]
+[ext_resource type="Texture2D" uid="uid://464om4468qyu" path="res://Assets/Sprites/IsometricTRPGAssetPack_OutlinedEntities.png" id="2_0rk4n"]
+[ext_resource type="PackedScene" uid="uid://7ygn673r23nw" path="res://Scenes/UI/PreviewBar.tscn" id="3_j037o"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_j037o"]
+atlas = ExtResource("2_0rk4n")
+region = Rect2(0, 544, 16, 17)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_0rk4n"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_j037o")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="CharacterPreview" type="Control" node_paths=PackedStringArray("Sprite", "Bar")]
+z_index = 8
+y_sort_enabled = true
+layout_mode = 3
+anchors_preset = 0
+offset_top = -48.0
+offset_bottom = -48.0
+script = ExtResource("1_6wj5g")
+Sprite = NodePath("Sprite")
+Bar = NodePath("PreviewBar")
+
+[node name="Sprite" type="AnimatedSprite2D" parent="."]
+scale = Vector2(5.695, 5.695)
+sprite_frames = SubResource("SpriteFrames_0rk4n")
+
+[node name="PreviewBar" parent="." instance=ExtResource("3_j037o")]
+offset_top = 30.0
+offset_bottom = 30.0
